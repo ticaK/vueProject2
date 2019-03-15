@@ -5,6 +5,11 @@ import App from './App.vue'
 import Home from './components/Home'
 import Settings from './components/Settings'
 import About from './components/About.vue'
+import User from './components/User.vue'
+import Profile from './components/Profile.vue'
+import Posts from './components/Posts.vue'
+
+
 
 
 //imort HOme mogli smo i neko drugo ime jer je default export, ali smo nazvali HOme
@@ -18,6 +23,18 @@ const routes = [
   {path:'/',component: Home},
   {path:'/about',component: About},
   {path:'/settings/:id',component: Settings},
+  {
+    path:'/user/:id',
+    component:User,
+    redirect:'/user/:id/profile',
+    // kada se nadjemo na user: id ruti, hocemo da se odmah rekirektujrmo na posts
+    children:[
+      {path: 'profile',component:Profile},
+      {path: 'posts',component:Posts},
+      
+    ]
+  
+  }
 
 ]
 
